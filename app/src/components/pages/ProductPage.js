@@ -1,5 +1,7 @@
+import ProductContainer from '../containers/ProductContainer';
+
 const ProductPage = () => {
-  return <h1>Product</h1>;
+  return <ProductContainer/>;
 };
 
 export default ProductPage;
