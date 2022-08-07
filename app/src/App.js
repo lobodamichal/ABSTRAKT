@@ -1,11 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import About from "./components/pages/about.page";
-import Cart from "./components/pages/cart.page";
-import Collections from "./components/pages/collections.page";
-import Home from "./components/pages/home.page";
-import Product from "./components/pages/product.page";
-import Products from "./components/pages/products.page";
+import About from "./components/pages/AboutPage";
+import Cart from "./components/pages/CartPage";
+import Collections from "./components/pages/CollectionsPage";
+import Home from "./components/pages/HomePage";
+import Product from "./components/pages/ProductPage";
+import Products from "./components/pages/ProductsPage";
 
 function App() {
   return (
