@@ -3,9 +3,9 @@
     {
       "id": "1001",
       "name": "philabaculum",
-      "sizes": {
-        "medium": { "dimensions": [11.7, 16.6], "price": 200 },
-        "large": { "dimensions": [16.5, 23.4], "price": 270 }
+      "variant": {
+        "medium": { "dimensions": [11.7, 16.6], "price": 300 },
+        "large": { "dimensions": [16.5, 23.4], "price": 370 }
       },
       "author": "dante pałys",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -17,9 +17,9 @@
     {
       "id": "1002",
       "name": "melacum",
-      "sizes": {
-        "medium": { "dimensions": [11.7, 16.6], "price": 200 },
-        "large": { "dimensions": [16.5, 23.4], "price": 270 }
+      "variant": {
+        "medium": { "dimensions": [11.7, 16.6], "price": 220 },
+        "large": { "dimensions": [16.5, 23.4], "price": 290 }
       },
       "author": "dante pałys",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -31,9 +31,9 @@
     {
       "id": "1003",
       "name": "picolum",
-      "sizes": {
-        "medium": { "dimensions": [11.7, 16.6], "price": 200 },
-        "large": { "dimensions": [16.5, 23.4], "price": 270 }
+      "variant": {
+        "medium": { "dimensions": [11.7, 16.6], "price": 400 },
+        "large": { "dimensions": [16.5, 23.4], "price": 470 }
       },
       "author": "dante pałys",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
@@ -45,13 +45,14 @@
     {
       "id": "1004",
       "name": "nino",
-      "sizes": {
+      "variant": {
         "medium": { "dimensions": [11.7, 16.6], "price": 100 },
         "large": { "dimensions": [16.5, 23.4], "price": 170 }
       },
       "author": "eleonor muskiewicz",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
       "collection": "bauhaus",
+
       "sold": 13,
       "since": "Sun Aug 07 2021 18:36:29 GMT+0200",
       "likes": 1
@@ -59,9 +60,9 @@
     {
       "id": "1005",
       "name": "pino",
-      "sizes": {
-        "medium":{ "dimensions": [11.7, 16.6], "price": 100 },
-        "large":{ "dimensions": [16.5, 23.4], "price": 170 }
+      "variant": {
+        "medium": { "dimensions": [11.7, 16.6], "price": 100 },
+        "large": { "dimensions": [16.5, 23.4], "price": 170 }
       },
       "author": "eleonor muskiewicz",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
