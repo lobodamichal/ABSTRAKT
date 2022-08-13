@@ -7,34 +7,30 @@ const allProductsSlice = createSlice({
   initialState: { products },
   reducers: {
     sortProducts(state, action) {
-      let key = "";
       switch (action.payload.type) {
         case "price":
-          key = "variant.medium.price";
-          sortProducts(state.products, key, action.payload.order);
+          sortProducts(state.products, "variant.medium.price", action.payload.order);
           break;
         case "popularity":
-          key = "sold";
-          sortProducts(state.products, key, action.payload.order);
+          sortProducts(state.products, "sold", action.payload.order);
           break;
         case "author":
-          key = "author";
-          sortProducts(state.products, key, action.payload.order);
+          sortProducts(state.products, "author", action.payload.order);
           break;
         case "name":
-          key = "name";
-          sortProducts(state.products, key, action.payload.order);
+          sortProducts(state.products, "name", action.payload.order);
           break;
         case "date released":
-          key = "since";
-          sortProducts(state.products, key, action.payload.order);
+          sortProducts(state.products, "since", action.payload.order);
           break;
         default:
           break;
       }
     },
+    likeProduct(state, payload) {
+
+    },
     buyProduct(state, payload) {},
-    likeProduct(state, payload) {},
   },
 });
 
