@@ -27,8 +27,8 @@ const allProductsSlice = createSlice({
           break;
       }
     },
-    likeProduct(state, payload) {
-
+    likeProduct(state, action) {
+      console.log(`id liked: ${action.payload}`)
     },
     buyProduct(state, payload) {},
   },

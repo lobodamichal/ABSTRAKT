@@ -4,7 +4,7 @@ import GalleryScrollElement from "./GalleryScrollElement";
 const GalleryScroll = (props) => {
   const output = props.data.map((el) => (
     <Link
-      to={`/product${el.id}`}
+      to={`/product/${el.id}`}
       key={el.id}
     ><GalleryScrollElement el={el} /></Link>
   ));

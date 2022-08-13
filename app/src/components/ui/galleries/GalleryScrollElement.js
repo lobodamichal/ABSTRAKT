@@ -1,10 +1,14 @@
 import ButtonImage from "../buttons/ButtonImage";
+import { useDispatch } from "react-redux";
+import { allProductsActions } from "../../../store/all-products-slice";
 
 const GalleryScrollElement = (props) => {
+  const dispatch = useDispatch();
+
   const el = props.el;
   const likeAction = (event) => {
     event.preventDefault();
-    console.log(`id:${el.id} liked`);
+    dispatch(allProductsActions.likeProduct(el.id))
   };
 
   return (
