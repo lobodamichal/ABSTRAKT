@@ -1,7 +1,7 @@
-import AllProductsContainer from '../containers/AllProductsContainer'
+import AllProductsContainer from "../containers/AllProductsContainer";
 
 const ProductsPage = () => {
-  return <AllProductsContainer/>;
+  return <AllProductsContainer />;
 };
 
 export default ProductsPage;

@@ -4,12 +4,22 @@ import sortProducts from "../helpers/sortProducts";
 
 const allProductsSlice = createSlice({
   name: "all-products",
-  initialState: { products },
+  initialState: {
+    products,
+    optionSortSetup: {
+      orders: ["up", "down"],
+      values: ["price", "popularity", "author", "name", "date released"],
+    },
+  },
   reducers: {
     sortProducts(state, action) {
       switch (action.payload.type) {
         case "price":
-          sortProducts(state.products, "variant.medium.price", action.payload.order);
+          sortProducts(
+            state.products,
+            "variant.medium.price",
+            action.payload.order
+          );
           break;
         case "popularity":
           sortProducts(state.products, "sold", action.payload.order);
@@ -28,7 +38,7 @@ const allProductsSlice = createSlice({
       }
     },
     likeProduct(state, action) {
-      console.log(`id liked: ${action.payload}`)
+      console.log(`id liked: ${action.payload}`);
     },
     buyProduct(state, payload) {},
   },
