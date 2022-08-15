@@ -15,8 +15,6 @@ const ProductContainer = () => {
   const [size, setSize] = useState(Object.keys(product.variant)[0])
   const [quantity, setQuantity] = useState(1)
 
-  
-
   return (
     <>
       <div>gallery</div>
