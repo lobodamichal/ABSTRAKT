@@ -6,7 +6,7 @@ const AllProductsContainer = () => {
   const products = useSelector((state) => state.allProducts.products);
 
   return (
-    <div className="allProductsContainer">
+    <div>
       <h1>All Products</h1>
       <OptionSort data={products}/>
       <GalleryScroll data={products} />

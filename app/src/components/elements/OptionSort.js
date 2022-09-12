@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { allProductsActions } from "../../store/all-products-slice";
 import ButtonOption from "../ui/buttons/ButtonOption";
-import nextValue from "../../helpers/nextValue";
+import arrayLooper from "../../helpers/arrayLooper";
 
 const OptionSort = () => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const OptionSort = () => {
   );
 
   const [optionSettings, setOptionSettings] = useState({
-    value: values[1],
+    value: values[0],
     order: orders[1],
   });
 
@@ -25,12 +25,12 @@ const OptionSort = () => {
   }, [optionSettings, dispatch]);
 
   const valueHandler = () => {
-    const newValue = nextValue(values, optionSettings.value);
+    const newValue = arrayLooper(values, optionSettings.value);
     setOptionSettings({ ...optionSettings, value: newValue });
   };
 
   const orderHandler = () => {
-    const newOrder = nextValue(orders, optionSettings.order);
+    const newOrder = arrayLooper(orders, optionSettings.order);
     setOptionSettings({ ...optionSettings, order: newOrder });
   };
 

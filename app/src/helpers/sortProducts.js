@@ -1,6 +1,13 @@
-const sortProducts = (products, key, order) => {
-  products.sort((a, b) => (a[key] > b[key] ? 1 : -1));
-  if (order === "down") products.reverse();
+const sortProducts = (products, keyCallbackFunction, order) => {
+  if (order === "down") {
+    products.sort((a, b) =>
+      a[keyCallbackFunction(a)] < b[keyCallbackFunction(b)] ? 1 : -1
+    );
+  } else {
+    products.sort((a, b) =>
+    a[keyCallbackFunction(a)] > b[keyCallbackFunction(b)] ? 1 : -1
+    );
+  }
 };
 
 export default sortProducts;

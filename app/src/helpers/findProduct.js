@@ -1,5 +1,5 @@
-const findProduct = (array, id) => {
-    return array.find(x => x.id === id)
+const findProduct = (products, key, value) => {
+    return products.find(x => x[key] === value)
 }
 
 export default findProduct
