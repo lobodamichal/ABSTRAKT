@@ -36,6 +36,7 @@ const OptionSort = () => {
 
   return (
     <>
+      <p>sort by:</p>
       <ButtonOption onClickHandler={valueHandler}>
         {optionSettings.value}
       </ButtonOption>

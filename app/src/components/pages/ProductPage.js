@@ -1,7 +1,11 @@
-import ProductContainer from '../containers/ProductContainer';
+import ProductContainer from "../containers/ProductContainer";
 
 const ProductPage = () => {
-  return <ProductContainer/>;
+  return (
+    <>
+      <ProductContainer />
+    </>
+  );
 };
 
 export default ProductPage;

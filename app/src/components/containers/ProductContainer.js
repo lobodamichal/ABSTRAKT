@@ -9,6 +9,7 @@ import ButtonLike from "../ui/buttons/ButtonLike";
 import ButtonMain from "../ui/buttons/ButtonMain";
 import OptionQuantity from "../elements/OptionQuantity";
 import OptionSize from "../elements/OptionSize";
+import Image from "../ui/Image";
 
 const ProductContainer = () => {
   const params = useParams();
@@ -19,36 +20,40 @@ const ProductContainer = () => {
   const variants = pageProduct.variants;
 
   const [variant, setVariant] = useState(firstVariant(variants, "price"));
-  const [quantity, setQuantity] = useState(1)
+  const [quantity, setQuantity] = useState(1);
 
   const likeProductAction = (event) => {
     event.preventDefault();
     dispatch(allProductsActions.likeProduct(pageProduct.id));
   };
 
-  const getQuantity = val => {
-    setQuantity(val)
-  }
+  const getQuantity = (val) => {
+    setQuantity(val);
+  };
 
   const addToCartAction = () => {
     const addProduct = {
       name: pageProduct.name,
       id: pageProduct.id,
       variant,
-      quantity
+      quantity,
     };
     dispatch(cartActions.addToCart(addProduct));
   };
 
   return (
     <>
-      <div>gallery</div>
+      <Image id={pageProduct.id} type='main' />
       <h1>{pageProduct.name}</h1>
       <ButtonLike onClickHandler={likeProductAction}>like</ButtonLike>
       <p>by {pageProduct.author}</p>
       <p>{variant.price}</p>
       <OptionSize data={variants} value={variant} setValue={setVariant} />
-      <OptionQuantity changeQuantity={getQuantity} initValue={1} type={'product'}/>
+      <OptionQuantity
+        changeQuantity={getQuantity}
+        initValue={1}
+        type={"product"}
+      />
       <ButtonMain onClickHandler={addToCartAction}>add to cart</ButtonMain>
       <p>{pageProduct.description}</p>
     </>

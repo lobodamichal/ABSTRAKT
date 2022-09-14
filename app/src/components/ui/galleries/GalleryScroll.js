@@ -4,6 +4,7 @@ import { allProductsActions } from "../../../store/all-products-slice";
 import { cartActions } from "../../../store/cart-slice";
 import firstVariant from "../../../helpers/firstVariant";
 import ButtonLike from "../buttons/ButtonLike";
+import Image from "../Image";
 
 const GalleryScroll = (props) => {
   const dispatch = useDispatch();
@@ -17,22 +18,23 @@ const GalleryScroll = (props) => {
       event.preventDefault();
       dispatch(allProductsActions.likeProduct(product.id));
     };
-  
+
     const addToCartAction = (event) => {
       event.preventDefault();
       dispatch(cartActions.addToCart({ ...product, variant, quantity: 1 }));
     };
-  
+
     return (
-    <Link to={`/product/${el.id}`} key={el.id}>
-        <div>'image'</div>
-        <h2>{el.name}</h2>
+      <Link to={`/product/${product.id}`} key={product.id}>
+        <Image id={product.id} type='main' />
+        <h2>{product.name}</h2>
         <ButtonLike onClickHandler={likeProductAction}>like</ButtonLike>
         <button onClick={addToCartAction}>to cart</button>
-        <p>by {el.author}</p>
+        <p>by {product.author}</p>
         <p>${price}</p>
-    </Link>
-  )});
+      </Link>
+    );
+  });
 
   return <>{gallery}</>;
 };
