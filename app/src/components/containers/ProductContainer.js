@@ -42,7 +42,7 @@ const ProductContainer = () => {
   };
 
   return (
-    <>
+    <section>
       <Image id={pageProduct.id} type='main' />
       <h1>{pageProduct.name}</h1>
       <ButtonLike onClickHandler={likeProductAction}>like</ButtonLike>
@@ -56,7 +56,7 @@ const ProductContainer = () => {
       />
       <ButtonMain onClickHandler={addToCartAction}>add to cart</ButtonMain>
       <p>{pageProduct.description}</p>
-    </>
+    </section>
   );
 };
 

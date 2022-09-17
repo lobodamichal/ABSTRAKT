@@ -1,5 +1,9 @@
-const Spinner = () => {
-    return <div>Loading...</div>
-}
+import { useSelector } from "react-redux";
 
-export default Spinner
+const Spinner = () => {
+  const isLoading = useSelector((state) => state.ui.isLoading);
+  
+  return isLoading && <div>Loading...</div>;
+};
+
+export default Spinner;

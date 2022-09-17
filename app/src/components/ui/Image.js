@@ -4,17 +4,37 @@ import Error from "./Error";
 
 const Image = (props) => {
   const [imageURL, setImageURL] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(undefined);
 
   const firebaseStorage = getStorage();
-  const imageRef = ref(firebaseStorage, `product_images/product${props.id}-${props.type}.png`);
+  const imageRef = ref(
+    firebaseStorage,
+    `product_images/product${props.id}-${props.type}.png`
+  );
 
   useEffect(() => {
-    getDownloadURL(imageRef).then(url => setImageURL(url))
+    const fetchImage = async () => {
+      try {
+        setIsLoading(true);
+        const response = await getDownloadURL(imageRef);
+
+        setImageURL(response);
+      } catch (e) {
+        setError("Can't load image");
+      }
+      setIsLoading(false);
+    };
+
+    fetchImage();
+    // getDownloadURL(imageRef).then(url => setImageURL(url))
   }, []);
 
   return (
     <>
-      <img src={imageURL} alt={`${props.id}`} />
+      {isLoading && <div>loading...</div>}
+      {error && <p>{error}</p>}
+      {!isLoading && !error && <img src={imageURL} alt={`${props.id}`} />}
     </>
   );
 };

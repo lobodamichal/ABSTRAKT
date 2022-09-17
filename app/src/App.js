@@ -9,19 +9,23 @@ import Product from "./components/pages/ProductPage";
 import Products from "./components/pages/AllProductsPage";
 import NavigationBar from "./components/elements/NavigationBar";
 import useFetchProducts from "./hooks/use-fetch-products";
+import Error from "./components/ui/Error";
+import Spinner from "./components/ui/Spinner";
+import AuthContainer from "./components/containers/AuthContainer";
 
 function App() {
-  const { isLoading, error, fetchProducts } = useFetchProducts();
+  const fetchProducts = useFetchProducts();
 
   useEffect(() => {
-    fetchProducts();
+    fetchProducts()
   }, []);
 
   return (
     <>
       <NavigationBar />
-      {isLoading}
-      {error}
+      <AuthContainer />
+      <Error />
+      <Spinner />
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/all-products" element={<Products />} />

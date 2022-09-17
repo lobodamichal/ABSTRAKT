@@ -10,7 +10,7 @@ const CartContainer = () => {
   );
 
   return (
-    <div>
+    <section>
       <p>
         {!empty
           ? `${cart.reduce(
@@ -23,7 +23,7 @@ const CartContainer = () => {
       {!empty && <p>total: {total}</p>}
       <button>check out</button>
       <button>continue shopping</button>
-    </div>
+    </section>
   );
 };
 
