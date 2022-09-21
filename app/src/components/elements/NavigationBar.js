@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
+import { uiActions } from "../../store/ui-slice";
+import { useDispatch } from "react-redux";
 
 const NavigationBar = () => {
+  const dispatch = useDispatch()
     const display = {
         "display": "inline-block"
+    }
+
+    const userOnClickHandler = () => {
+      dispatch(uiActions.setShowModal())
     }
 
   return (
@@ -25,7 +32,7 @@ const NavigationBar = () => {
           about
         </Link>
       </div>
-      <button style={display}>user</button>
+      <button style={display} onClick={userOnClickHandler}>user</button>
       <button style={display}>cart</button>
     </div>
   );

@@ -11,7 +11,7 @@ import NavigationBar from "./components/elements/NavigationBar";
 import useFetchProducts from "./hooks/use-fetch-products";
 import Error from "./components/ui/Error";
 import Spinner from "./components/ui/Spinner";
-import AuthContainer from "./components/containers/AuthContainer";
+import Modal from "./components/containers/Modal";
 
 function App() {
   const fetchProducts = useFetchProducts();
@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <NavigationBar />
-      <AuthContainer />
+      <Modal />
       <Error />
       <Spinner />
       <Routes>

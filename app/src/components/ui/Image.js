@@ -27,13 +27,12 @@ const Image = (props) => {
     };
 
     fetchImage();
-    // getDownloadURL(imageRef).then(url => setImageURL(url))
   }, []);
 
   return (
     <>
       {isLoading && <div>loading...</div>}
-      {error && <p>{error}</p>}
+      {error && <Error>{error}</Error>}
       {!isLoading && !error && <img src={imageURL} alt={`${props.id}`} />}
     </>
   );

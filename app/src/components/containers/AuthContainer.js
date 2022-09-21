@@ -1,77 +1,84 @@
-import Modal from "../ui/Modal";
-import { useState, useRef } from "react";
+import Input from "../elements/Input";
+import { useState } from "react";
+import useValidation from "../../hooks/use-validation";
+import useAuthentication from "../../hooks/use-authentication";
 
 const AuthContainer = () => {
-  const emailInputRef = useRef();
-  const passwordInputRef = useRef();
-  const repeatPasswordInputRef = useRef();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
+  const [repeatPassword, setRepeatPassword] = useState();
+
+  const getEmailValue = (input) => setEmail(input);
+  const getPasswordValue = (input) => setPassword(input);
+  const getRepeatPasswordValue = (input) => setRepeatPassword(input);
 
   const [register, setRegister] = useState(false);
+  const authentication = useAuthentication();
 
-  const registerText = {
+  const {
+    emailValidation,
+    passwordValidation,
+    repeatPasswordValidation,
+    formValidation,
+  } = useValidation(register);
+
+  const registerTextContent = {
     header: "Register",
     paragraph: "Got an account already?",
     button: "Login here.",
   };
-  const loginText = {
+  const loginTextContent = {
     header: "Login",
     paragraph: "No account yet?",
     button: "Register here.",
   };
 
-  const text = register ? registerText : loginText;
+  const textContent = register ? registerTextContent : loginTextContent;
 
   const changeViewHandler = () => {
-    setRegister((state) => !state)
-  }
+    setRegister((state) => !state);
+  };
 
   const submitHandler = (event) => {
     event.preventDefault();
-
-    const enteredEmail = emailInputRef.current.value
-    const enteredPassword = passwordInputRef.current.value
-    const enteredRepeatPassword = register ? repeatPasswordInputRef.current.value : null
-
-    console.log({enteredEmail, enteredPassword, enteredRepeatPassword})
-
-    if (register) {
-
-    } else {
-
-    }
+    authentication(register, email, password);
   };
 
   return (
-    <Modal>
-      <h2>{text.header}</h2>
+    <>
+      <h2>{textContent.header}</h2>
       <p>
-        {text.paragraph}
-        <span onClick={changeViewHandler}> {text.button}</span>
+        {textContent.paragraph}
+        <span onClick={changeViewHandler}> {textContent.button}</span>
       </p>
-      <form>
-        <div>
-          <label htmlFor="email">Email</label>
-          <input id="email" type="email" required ref={emailInputRef} />
-        </div>
-        <div>
-          <label htmlFor="password">Password</label>
-          <input id="password" type="text" required ref={passwordInputRef} />
-        </div>
+      <form onSubmit={submitHandler}>
+        <Input
+          name="Email"
+          type="email"
+          inputValidation={emailValidation}
+          formValidation={formValidation}
+          getValue={getEmailValue}
+        />
+        <Input
+          name="Password"
+          type="text"
+          inputValidation={passwordValidation}
+          formValidation={formValidation}
+          getValue={getPasswordValue}
+        />
         {register && (
-          <div>
-            <label htmlFor="repeatPassword">Repeat password</label>
-            <input
-              id="repeatPassword"
-              type="text"
-              required
-              ref={repeatPasswordInputRef}
-            />
-          </div>
+          <Input
+            name="Repeat password"
+            type="text"
+            inputValidation={repeatPasswordValidation}
+            formValidation={formValidation}
+            getValue={getRepeatPasswordValue}
+          />
         )}
-        <button onClick={submitHandler}>{text.header}</button>
+        <button disabled={!formValidation()}>{textContent.header}</button>
       </form>
       <p>return</p>
-    </Modal>
+    </>
   );
 };
 
