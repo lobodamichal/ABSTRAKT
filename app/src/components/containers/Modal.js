@@ -1,13 +1,14 @@
 import { useSelector } from "react-redux";
 import AuthContainer from "./AuthContainer";
 import UserMenuContainer from "./UserMenuContainer";
+import UserDetailsContainer from "./UserDetailsContainer";
 
 const Modal = () => {
   const showModal = useSelector((state) => state.ui.showModal);
-  const showAuth = useSelector((state) => !state.user.isLogged);
-  const modalContent = useSelector((state) => state.user.modalContent);
-
+  const showAuth = useSelector((state) => !state.ui.isLogged);
+  const modalContent = useSelector((state) => state.ui.modalContent);
   let content;
+  
   if (showAuth) {
     content = <AuthContainer />;
   } else {
@@ -16,12 +17,10 @@ const Modal = () => {
         content = <UserMenuContainer />;
         break;
       case "details":
+        content = <UserDetailsContainer />
         break
       case "orders":
         break
-      default:
-        content = <UserMenuContainer />;
-        break;
     }
   }
 

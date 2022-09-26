@@ -1,7 +1,9 @@
 import Input from "../elements/Input";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import useValidation from "../../hooks/use-validation";
 import useAuthentication from "../../hooks/use-authentication";
+import { uiActions } from "../../store/ui-slice";
 
 const AuthContainer = () => {
   const [email, setEmail] = useState();
@@ -13,7 +15,8 @@ const AuthContainer = () => {
   const getRepeatPasswordValue = (input) => setRepeatPassword(input);
 
   const [register, setRegister] = useState(false);
-  const authentication = useAuthentication();
+  const { signUp, logIn } = useAuthentication();
+  const dispatch = useDispatch();
 
   const {
     emailValidation,
@@ -39,9 +42,19 @@ const AuthContainer = () => {
     setRegister((state) => !state);
   };
 
+  const returnHandler = () => {
+    dispatch(uiActions.setShowModal());
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
-    authentication(register, email, password);
+    if (register) {
+      signUp(email, password)
+    dispatch(uiActions.setModalContent("details"))
+    } else {
+      logIn(email, password);
+      dispatch(uiActions.setModalContent("menu"))
+    }
   };
 
   return (
@@ -77,7 +90,7 @@ const AuthContainer = () => {
         )}
         <button disabled={!formValidation()}>{textContent.header}</button>
       </form>
-      <p>return</p>
+      <p onClick={returnHandler}>return</p>
     </>
   );
 };

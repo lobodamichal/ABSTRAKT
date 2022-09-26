@@ -5,6 +5,7 @@ const uiSlice = createSlice({
   initialState: {
     error: "",
     isLoading: false,
+    isLogged: false,
     showModal: false,
     modalContent: "",
   },
@@ -15,12 +16,15 @@ const uiSlice = createSlice({
     setError(state, action) {
       state.error = action.payload;
     },
-    setShowModal(state, action) {
+    setShowModal(state) {
       state.showModal = !state.showModal;
     },
     setModalContent(state, action) {
-      state.modalContent = action.payload
-    }
+      state.modalContent = action.payload;
+    },
+    setIsLogged(state, action) {
+      state.isLogged = action.payload;
+    },
   },
 });
 
