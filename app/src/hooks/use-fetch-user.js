@@ -11,8 +11,8 @@ const useFetchUser = () => {
       `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}.json`
     )
       .then((response) => {
-        if(!response.ok) {
-          dispatch(uiActions.setError("Something went wrong..."))
+        if (!response.ok) {
+          dispatch(uiActions.setError("Something went wrong..."));
         } else {
           response.json().then((data) => {
             dispatch(userActions.setUserState(data));
@@ -30,9 +30,9 @@ const useFetchUser = () => {
       lovedProducts: false,
       accountDetails: {
         name: false,
-        phoneNumber: false,
+        phonenumber: false,
         street: false,
-        postCode: false,
+        postcode: false,
         city: false,
         country: false,
       },
@@ -60,7 +60,24 @@ const useFetchUser = () => {
     //ERROR HANDLER
   };
 
-  return { getUserData, setUserData };
+  const updateAccountDetails = async (email, details) => {
+    const emailFix = email.replace(".", "");
+    await fetch(
+      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}/accountDetails.json`,
+      {
+        method: "PUT",
+        body: JSON.stringify(details),
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }
+    )
+      .then(dispatch(userActions.setAccountDetails(details)))
+      .catch((e) => console.log(e));
+    //ERROR HANDLER
+  };
+
+  return { getUserData, setUserData, updateAccountDetails };
 };
 
 export default useFetchUser;

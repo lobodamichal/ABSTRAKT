@@ -52,10 +52,19 @@ const useValidation = (register) => {
       : emailIsValid && passwordIsValid;
   };
 
+  const detailsValidation = (input) => {
+    const check = input !== ""
+    return {
+      check, 
+      message: showMessage(input, "")
+    }
+  }
+
   return {
     emailValidation,
     passwordValidation,
     repeatPasswordValidation,
+    detailsValidation,
     formValidation,
   };
 };

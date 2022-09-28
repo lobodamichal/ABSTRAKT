@@ -5,23 +5,25 @@ const Input = (props) => {
   const [isClicked, setIsClicked] = useState(false);
 
   const { check, message } = props.inputValidation(enteredValue);
-  props.formValidation()
+  
 
   const showError = !check && isClicked;
 
   const onChangeHandler = (event) => {
     setEnteredValue(event.target.value);
+    props.formValidation()
   };
 
   const onBlurHandler = (event) => {
     setIsClicked(true);
-    props.getValue(event.target.value);
+    props.getValue(event.target);
   };
 
   return (
     <div>
       <label htmlFor={props.name}>{props.name}</label>
       <input
+        value={props.value}
         id={props.name}
         type={props.type}
         required

@@ -10,9 +10,9 @@ const AuthContainer = () => {
   const [password, setPassword] = useState();
   const [repeatPassword, setRepeatPassword] = useState();
 
-  const getEmailValue = (input) => setEmail(input);
-  const getPasswordValue = (input) => setPassword(input);
-  const getRepeatPasswordValue = (input) => setRepeatPassword(input);
+  const getEmailValue = (input) => setEmail(input.value);
+  const getPasswordValue = (input) => setPassword(input.value);
+  const getRepeatPasswordValue = (input) => setRepeatPassword(input.value);
 
   const [register, setRegister] = useState(false);
   const { signUp, logIn } = useAuthentication();
@@ -49,11 +49,11 @@ const AuthContainer = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     if (register) {
-      signUp(email, password)
-    dispatch(uiActions.setModalContent("details"))
+      signUp(email, password);
+      dispatch(uiActions.setModalContent("details"));
     } else {
       logIn(email, password);
-      dispatch(uiActions.setModalContent("menu"))
+      dispatch(uiActions.setModalContent("menu"));
     }
   };
 
