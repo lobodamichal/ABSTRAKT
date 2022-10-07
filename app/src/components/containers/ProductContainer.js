@@ -2,10 +2,9 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import { cartActions } from "../../store/cart-slice";
-import { allProductsActions } from "../../store/all-products-slice";
 import findProduct from "../../helpers/findProduct";
 import firstVariant from "../../helpers/firstVariant";
-import ButtonLike from "../ui/buttons/ButtonLike";
+import ButtonLove from "../ui/buttons/ButtonLove";
 import ButtonMain from "../ui/buttons/ButtonMain";
 import OptionQuantity from "../elements/OptionQuantity";
 import OptionSize from "../elements/OptionSize";
@@ -21,11 +20,6 @@ const ProductContainer = () => {
 
   const [variant, setVariant] = useState(firstVariant(variants, "price"));
   const [quantity, setQuantity] = useState(1);
-
-  const likeProductAction = (event) => {
-    event.preventDefault();
-    dispatch(allProductsActions.likeProduct(pageProduct.id));
-  };
 
   const getQuantity = (val) => {
     setQuantity(val);
@@ -45,7 +39,7 @@ const ProductContainer = () => {
     <section>
       <Image id={pageProduct.id} type='main' />
       <h1>{pageProduct.name}</h1>
-      <ButtonLike onClickHandler={likeProductAction}>like</ButtonLike>
+      <ButtonLove id={pageProduct.id}>like</ButtonLove>
       <p>by {pageProduct.author}</p>
       <p>{variant.price}</p>
       <OptionSize data={variants} value={variant} setValue={setVariant} />

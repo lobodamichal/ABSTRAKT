@@ -4,9 +4,11 @@ import UserMenuContainer from "./UserMenuContainer";
 import UserDetailsContainer from "./UserDetailsContainer";
 
 const Modal = () => {
+  console.log('Modal rerender')
   const showModal = useSelector((state) => state.ui.showModal);
   const showAuth = useSelector((state) => !state.ui.isLogged);
   const modalContent = useSelector((state) => state.ui.modalContent);
+  
   let content;
   
   if (showAuth) {

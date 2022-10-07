@@ -10,6 +10,14 @@ const userSlice = createSlice({
     setAccountDetails(state, action) {
       state.userData.accountDetails = action.payload;
     },
+    loveProduct(state, action) {
+      if (!state.userData.lovedProducts.includes(action.payload))
+        state.userData.lovedProducts.push(action.payload);
+      else {
+        const elementIndex = state.userData.loveProducts.indexOf(action.payload);
+        state.userData.loveProducts.splice(elementIndex, 1)
+      }
+    },
   },
 });
 

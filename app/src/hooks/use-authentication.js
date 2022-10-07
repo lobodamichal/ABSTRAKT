@@ -52,6 +52,7 @@ const useAuthentication = () => {
           getUserData(email);
           dispatch(uiActions.setIsLogged(true));
           dispatch(uiActions.setError(""));
+          dispatch(uiActions.setModalContent("menu"));
         }
       })
       .catch((e) => console.log(e));
@@ -74,12 +75,15 @@ const useAuthentication = () => {
         if (!response.ok) {
           errorHandler(response);
         } else {
-          logIn(email, password);
-          return response.json().then((data) => {
+          response.json().then((data) => {
             setUserData(data);
+            logIn(email, password);
           });
         }
       })
+      .then(
+        dispatch(uiActions.setModalContent("details"))
+      )
       .catch((e) => console.log(e));
     //ERROR HANDLER
   };

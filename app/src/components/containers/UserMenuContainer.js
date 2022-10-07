@@ -3,12 +3,15 @@ import { uiActions } from '../../store/ui-slice'
 
 const UserMenuContainer = () => {
     const dispatch = useDispatch()
+
     const lovedHandler = () => {
         console.log('redirect')
     }
+
     const ordersHandler = () => {
         dispatch(uiActions.setModalContent('orders'))
     }
+    
     const detailsHandler = () => {
         dispatch(uiActions.setModalContent('details'))
     }

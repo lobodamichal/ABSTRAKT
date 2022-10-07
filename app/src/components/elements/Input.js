@@ -1,29 +1,28 @@
 import { useState } from "react";
 
 const Input = (props) => {
-  const [enteredValue, setEnteredValue] = useState();
+  const [enteredValue, setEnteredValue] = useState(props.initialValue);
   const [isClicked, setIsClicked] = useState(false);
 
   const { check, message } = props.inputValidation(enteredValue);
-  
 
   const showError = !check && isClicked;
 
   const onChangeHandler = (event) => {
     setEnteredValue(event.target.value);
-    props.formValidation()
+    props.getValue(event.target);
   };
 
-  const onBlurHandler = (event) => {
+  const onBlurHandler = () => {
     setIsClicked(true);
-    props.getValue(event.target);
+    props.formValidation()
   };
 
   return (
     <div>
       <label htmlFor={props.name}>{props.name}</label>
       <input
-        value={props.value}
+        value={enteredValue}
         id={props.name}
         type={props.type}
         required

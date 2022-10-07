@@ -1,17 +1,28 @@
-import { useDispatch, useSelector } from "react-redux";
-import useFetchUser from "../../hooks/use-fetch-user";
-import { uiActions } from "../../store/ui-slice";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import useValidation from "../../hooks/use-validation";
+import useDetails from "../../hooks/use-details";
+import { uiActions } from "../../store/ui-slice";
+import { userActions } from "../../store/user-slice";
 import Input from "../elements/Input";
 
 const UserDetailsContainer = () => {
   const dispatch = useDispatch();
-  const { updateAccountDetails } = useFetchUser();
-  const { detailsValidation } = useValidation();
+  const { updateAccountDetails } = useDetails();
+  const { detailsFormValidation, detailValidation } = useValidation();
 
   const userData = useSelector((state) => state.user.userData);
-  const [formData, setFormData] = useState(false);
+  let formData = userData.accountDetails;
+
+  const [formIsValid, setFormIsValid] = useState(
+    detailsFormValidation(Object.keys(formData), Object.values(formData))
+  );
+
+  const formValidation = () => {
+    setFormIsValid(
+      detailsFormValidation(Object.keys(formData), Object.values(formData))
+    );
+  };
 
   const returnHandler = () => {
     dispatch(uiActions.setModalContent("menu"));
@@ -20,80 +31,70 @@ const UserDetailsContainer = () => {
   const submitHandler = (event) => {
     event.preventDefault();
     updateAccountDetails(userData.email, formData);
-  };
-
-  const formValidation = () => {
-    console.log(Object.keys(formData).length);
-    if (
-      Object.keys(formData).length === 6 &&
-      !Object.values(formData).includes("")
-    ) {
-      return true;
-    } else return false;
+    dispatch(userActions.setAccountDetails(formData));
   };
 
   const getInputValue = (e) => {
     let { id: key, value } = e;
-    key = key.replace(" ", "").toLowerCase();
-    setFormData({ ...formData, [key]: value });
+    formData = { ...formData, [key.toLowerCase().replace(" ", "")]: value };
   };
 
   return (
-    <>
+    <section>
       <h2>Account details</h2>
       <form onSubmit={submitHandler}>
         <Input
           name="Name"
           type="text"
-          inputValidation={detailsValidation}
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.name}
+          initialValue={formData.name}
         />
         <Input
           name="Phone number"
-          type="number"
-          inputValidation={detailsValidation}
+          type="text"
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.phonenumber}
+          initialValue={formData.phonenumber}
         />
         <Input
           name="Street"
           type="text"
-          inputValidation={detailsValidation}
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.street}
+          initialValue={formData.street}
         />
         <Input
           name="Postcode"
           type="text"
-          inputValidation={detailsValidation}
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.postcode}
+          initialValue={formData.postcode}
         />
         <Input
           name="City"
           type="text"
-          inputValidation={detailsValidation}
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.city}
+          initialValue={formData.city}
         />
         <Input
           name="Country"
           type="text"
-          inputValidation={detailsValidation}
+          inputValidation={detailValidation}
           getValue={getInputValue}
           formValidation={formValidation}
-          value={userData.accountDetails.country}
+          initialValue={formData.country}
         />
-        <button disabled={!formValidation()}>update details</button>
+        <button disabled={!formIsValid}>update details</button>
       </form>
       <p onClick={returnHandler}>return</p>
-    </>
+    </section>
   );
 };
 

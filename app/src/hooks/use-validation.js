@@ -46,13 +46,13 @@ const useValidation = (register) => {
     };
   };
 
-  const formValidation = () => {
+  const authFormValidation = () => {
     return register
       ? emailIsValid && passwordIsValid && repeatPasswordIsValid
       : emailIsValid && passwordIsValid;
   };
 
-  const detailsValidation = (input) => {
+  const detailValidation = (input) => {
     const check = input !== ""
     return {
       check, 
@@ -60,12 +60,22 @@ const useValidation = (register) => {
     }
   }
 
+  const detailsFormValidation = (keys, values) => {
+    if (
+      keys.length === 6 &&
+      !values.includes("")
+    ) {
+      return true;
+    } else return false;
+  };
+
   return {
     emailValidation,
     passwordValidation,
     repeatPasswordValidation,
-    detailsValidation,
-    formValidation,
+    detailValidation,
+    detailsFormValidation,
+    authFormValidation,
   };
 };
 

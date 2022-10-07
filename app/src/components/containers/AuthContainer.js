@@ -6,9 +6,9 @@ import useAuthentication from "../../hooks/use-authentication";
 import { uiActions } from "../../store/ui-slice";
 
 const AuthContainer = () => {
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
-  const [repeatPassword, setRepeatPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState("");
 
   const getEmailValue = (input) => setEmail(input.value);
   const getPasswordValue = (input) => setPassword(input.value);
@@ -22,7 +22,7 @@ const AuthContainer = () => {
     emailValidation,
     passwordValidation,
     repeatPasswordValidation,
-    formValidation,
+    authFormValidation,
   } = useValidation(register);
 
   const registerTextContent = {
@@ -50,15 +50,13 @@ const AuthContainer = () => {
     event.preventDefault();
     if (register) {
       signUp(email, password);
-      dispatch(uiActions.setModalContent("details"));
     } else {
       logIn(email, password);
-      dispatch(uiActions.setModalContent("menu"));
     }
   };
 
   return (
-    <>
+    <section>
       <h2>{textContent.header}</h2>
       <p>
         {textContent.paragraph}
@@ -69,14 +67,14 @@ const AuthContainer = () => {
           name="Email"
           type="email"
           inputValidation={emailValidation}
-          formValidation={formValidation}
+          formValidation={authFormValidation}
           getValue={getEmailValue}
         />
         <Input
           name="Password"
           type="text"
           inputValidation={passwordValidation}
-          formValidation={formValidation}
+          formValidation={authFormValidation}
           getValue={getPasswordValue}
         />
         {register && (
@@ -84,14 +82,14 @@ const AuthContainer = () => {
             name="Repeat password"
             type="text"
             inputValidation={repeatPasswordValidation}
-            formValidation={formValidation}
+            formValidation={authFormValidation}
             getValue={getRepeatPasswordValue}
           />
         )}
-        <button disabled={!formValidation()}>{textContent.header}</button>
+        <button disabled={!authFormValidation()}>{textContent.header}</button>
       </form>
       <p onClick={returnHandler}>return</p>
-    </>
+    </section>
   );
 };
 
