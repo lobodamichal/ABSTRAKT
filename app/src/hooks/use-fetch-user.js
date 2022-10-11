@@ -5,10 +5,9 @@ import { uiActions } from "../store/ui-slice";
 const useFetchUser = () => {
   const dispatch = useDispatch();
 
-  const getUserData = async (email) => {
-    const emailFix = email.replace(".", "");
+  const getUserData = async (localId) => {
     await fetch(
-      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}.json`
+      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${localId}.json`
     )
       .then((response) => {
         if (!response.ok) {
@@ -16,7 +15,6 @@ const useFetchUser = () => {
         } else {
           response.json().then((data) => {
             dispatch(userActions.setUserState(data));
-            dispatch(uiActions.setError(""));
           });
         }
       })
@@ -27,7 +25,7 @@ const useFetchUser = () => {
   const setUserData = async (responseData) => {
     const userData = {
       email: responseData.email,
-      lovedProducts: ['0'],
+      lovedProducts: null,
       accountDetails: {
         name: "",
         phonenumber: "",
@@ -36,13 +34,11 @@ const useFetchUser = () => {
         city: "",
         country: ""
       },
-      idToken: responseData.idToken,
+      localId: responseData.localId,
     };
 
-    const emailFix = responseData.email.replace(".", "");
-
     await fetch(
-      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}.json`,
+      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${responseData.localId}.json`,
       {
         method: "PUT",
         body: JSON.stringify(userData),
@@ -55,11 +51,9 @@ const useFetchUser = () => {
         if (!response.ok) {
           dispatch(uiActions.setError("Something went wrong..."))
         } else {
-          dispatch(uiActions.setError(""));
         }
       })
       .catch((e) => console.log(e));
-
 
     //ERROR HANDLER
   };

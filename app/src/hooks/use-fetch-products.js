@@ -18,7 +18,6 @@ const useFetchProducts = () => {
     } catch (e) {
       dispatch(uiActions.setError("Can't load..."));
     }
-    dispatch(uiActions.setError(""));
     dispatch(uiActions.setIsLoading(false));
   };
 

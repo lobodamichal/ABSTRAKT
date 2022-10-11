@@ -1,61 +1,59 @@
 import { useDispatch, useSelector } from "react-redux";
 import { userActions } from "../store/user-slice";
-import { uiActions } from "../store/ui-slice";
 
 const useDetails = () => {
-    const dispatch = useDispatch()
-    let lovedProducts = useSelector((state) => state.user.userData.lovedProducts);
+  const dispatch = useDispatch();
+  const lovedProducts = useSelector(
+    (state) => state.user.userData.lovedProducts
+  );
+  const localId = useSelector((state) => state.user.userData.localId);
 
-    const updateAccountDetails = async (email, details) => {
-        const emailFix = email.replace(".", "");
-        await fetch(
-          `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}/accountDetails.json`,
-          {
-            method: "PUT",
-            body: JSON.stringify(details),
-            headers: {
-              "Content-Type": "aplication/json",
-            },
-          }
-        )
-          .then(dispatch(userActions.setAccountDetails(details)))
-          .catch((e) => console.log(e));
-        //ERROR HANDLER
-      };
-    
-      const loveProduct = async (email, id) => {
-        const emailFix = email.replace(".", "");
-        if (lovedProducts.includes(id)) {
-          await fetch(
-            `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}/lovedProducts.json`,
-            {
-              method: "POST",
-              body: JSON.stringify([...lovedProducts, id]),
-              headers: {
-                "Content-Type": "aplication/json",
-              },
-            }
-          )
-            .then(dispatch(userActions.loveProduct(id)))
-            .catch((e) => console.log(e));
-        } else {
-          const elementIndex = lovedProducts.indexOf(id);
-          await fetch(
-            `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${emailFix}/lovedProducts.json`,
-            {
-              method: "POST",
-              body: JSON.stringify(lovedProducts.splice(elementIndex, 1)),
-              headers: {
-                "Content-Type": "aplication/json",
-              },
-            }
-          )
-            .then(dispatch(userActions.loveProduct(id)))
-            .catch((e) => console.log(e));
-        }
-      };
+  const updateAccountDetails = async (details) => {
+    await fetch(
+      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${localId}/accountDetails.json`,
+      {
+        method: "PUT",
+        body: JSON.stringify(details),
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }
+    )
+      .then(dispatch(userActions.setAccountDetails(details)))
+      .catch((e) => console.log(e));
+    //ERROR HANDLER
+  };
 
-      return { updateAccountDetails, loveProduct}
-}
+  const updateLovedProducts = async (id) => {
+    let newLovedArray;
 
-export default useDetails
+    if (!lovedProducts) {
+      newLovedArray = [id];
+      dispatch(userActions.setLovedProducts(newLovedArray));
+    } else if (lovedProducts && !lovedProducts.includes(id)) {
+      newLovedArray = [...lovedProducts, id];
+      dispatch(userActions.setLovedProducts(newLovedArray));
+    } else {
+      const elementIndex = lovedProducts.indexOf(id);
+      newLovedArray = lovedProducts.filter(
+        (_, index) => index !== elementIndex
+      );
+      dispatch(userActions.setLovedProducts(newLovedArray));
+    }
+
+    await fetch(
+      `https://abstrakt-5e25f-default-rtdb.europe-west1.firebasedatabase.app/userData/${localId}/lovedProducts.json`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ ...newLovedArray }),
+        headers: {
+          "Content-Type": "aplication/json",
+        },
+      }
+    ).catch((e) => console.log(e));
+  };
+
+  return { updateAccountDetails, updateLovedProducts };
+};
+
+export default useDetails;

@@ -1,28 +1,36 @@
-import useFetchUser from "../../../hooks/use-fetch-user";
+import useDetails from "../../../hooks/use-details";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 
 const ButtonImage = (props) => {
-  const { loveProduct } = useFetchUser();
+  const { updateLovedProducts } = useDetails();
   const lovedProducts = useSelector(
     (state) => state.user.userData.lovedProducts
   );
-  let isloved 
-  if (lovedProducts && lovedProducts.includes(props.id)) {
-    isloved = true
-  } else {
-    isloved = false
-  }
+  const email = useSelector((state) => state.user.userData.email);
+  const isLogged = useSelector((state) => state.ui.isLogged);
 
-  const [loved, setLoved] = useState(isloved);
+  const setInitialLoved = () => {
+    if (lovedProducts) {
+      return lovedProducts.includes(props.id);
+    } else {
+      return false;
+    }
+  };
+
+  const [loved, setLoved] = useState(setInitialLoved());
 
   const onClickHandler = (event) => {
-    event.preventDefault()
-    loveProduct(props.id);
+    event.preventDefault();
+    updateLovedProducts(email, props.id);
     setLoved(!loved);
   };
 
-  return <button onClick={onClickHandler}>{loved ? "loved" : "love"}</button>;
+  return (
+    <button disabled={!isLogged} onClick={onClickHandler}>
+      {loved ? "loved" : "love"}
+    </button>
+  );
 };
 
 export default ButtonImage;

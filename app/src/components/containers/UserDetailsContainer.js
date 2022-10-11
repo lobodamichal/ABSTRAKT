@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useRef, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useValidation from "../../hooks/use-validation";
 import useDetails from "../../hooks/use-details";
-import { uiActions } from "../../store/ui-slice";
 import { userActions } from "../../store/user-slice";
 import Input from "../elements/Input";
+import ButtonReturn from "../ui/buttons/ButtonReturn";
 
 const UserDetailsContainer = () => {
+  const buttonRef = useRef()
   const dispatch = useDispatch();
   const { updateAccountDetails } = useDetails();
   const { detailsFormValidation, detailValidation } = useValidation();
@@ -14,23 +15,17 @@ const UserDetailsContainer = () => {
   const userData = useSelector((state) => state.user.userData);
   let formData = userData.accountDetails;
 
-  const [formIsValid, setFormIsValid] = useState(
-    detailsFormValidation(Object.keys(formData), Object.values(formData))
-  );
-
   const formValidation = () => {
-    setFormIsValid(
-      detailsFormValidation(Object.keys(formData), Object.values(formData))
-    );
+    buttonRef.current.disabled = !detailsFormValidation(Object.keys(formData), Object.values(formData))
   };
 
-  const returnHandler = () => {
-    dispatch(uiActions.setModalContent("menu"));
-  };
+  useEffect(() => {
+    formValidation()
+  }, [])
 
   const submitHandler = (event) => {
     event.preventDefault();
-    updateAccountDetails(userData.email, formData);
+    updateAccountDetails(formData);
     dispatch(userActions.setAccountDetails(formData));
   };
 
@@ -40,7 +35,7 @@ const UserDetailsContainer = () => {
   };
 
   return (
-    <section>
+    <>
       <h2>Account details</h2>
       <form onSubmit={submitHandler}>
         <Input
@@ -91,10 +86,10 @@ const UserDetailsContainer = () => {
           formValidation={formValidation}
           initialValue={formData.country}
         />
-        <button disabled={!formIsValid}>update details</button>
+        <button ref={buttonRef}>update details</button>
       </form>
-      <p onClick={returnHandler}>return</p>
-    </section>
+      <ButtonReturn path="menu" />
+    </>
   );
 };
 

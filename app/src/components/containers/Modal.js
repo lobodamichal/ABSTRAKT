@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import AuthContainer from "./AuthContainer";
 import UserMenuContainer from "./UserMenuContainer";
 import UserDetailsContainer from "./UserDetailsContainer";
+import UserOrdersContainer from "./UserOrdersContainer";
 
 const Modal = () => {
-  console.log('Modal rerender')
   const showModal = useSelector((state) => state.ui.showModal);
   const showAuth = useSelector((state) => !state.ui.isLogged);
   const modalContent = useSelector((state) => state.ui.modalContent);
@@ -22,6 +22,7 @@ const Modal = () => {
         content = <UserDetailsContainer />
         break
       case "orders":
+        content = <UserOrdersContainer />
         break
     }
   }

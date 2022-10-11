@@ -10,4 +10,4 @@ const sortProducts = (products, keyCallbackFunction, order) => {
   }
 };
 
-export default sortProducts;
+export default sortProducts

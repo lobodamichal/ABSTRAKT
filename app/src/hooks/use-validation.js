@@ -60,8 +60,7 @@ const useValidation = (register) => {
     }
   }
 
-  const detailsFormValidation = (keys, values) => {
-    if (
+  const detailsFormValidation = (keys, values) => {    if (
       keys.length === 6 &&
       !values.includes("")
     ) {

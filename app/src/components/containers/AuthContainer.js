@@ -1,9 +1,8 @@
 import Input from "../elements/Input";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import useValidation from "../../hooks/use-validation";
 import useAuthentication from "../../hooks/use-authentication";
-import { uiActions } from "../../store/ui-slice";
+import ButtonReturn from "../ui/buttons/ButtonReturn";
 
 const AuthContainer = () => {
   const [email, setEmail] = useState("");
@@ -16,7 +15,6 @@ const AuthContainer = () => {
 
   const [register, setRegister] = useState(false);
   const { signUp, logIn } = useAuthentication();
-  const dispatch = useDispatch();
 
   const {
     emailValidation,
@@ -42,10 +40,6 @@ const AuthContainer = () => {
     setRegister((state) => !state);
   };
 
-  const returnHandler = () => {
-    dispatch(uiActions.setShowModal());
-  };
-
   const submitHandler = (event) => {
     event.preventDefault();
     if (register) {
@@ -56,7 +50,7 @@ const AuthContainer = () => {
   };
 
   return (
-    <section>
+    <>
       <h2>{textContent.header}</h2>
       <p>
         {textContent.paragraph}
@@ -88,8 +82,8 @@ const AuthContainer = () => {
         )}
         <button disabled={!authFormValidation()}>{textContent.header}</button>
       </form>
-      <p onClick={returnHandler}>return</p>
-    </section>
+      <ButtonReturn path={false} />
+    </>
   );
 };
 

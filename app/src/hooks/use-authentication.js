@@ -49,9 +49,10 @@ const useAuthentication = () => {
         if (!response.ok) {
           errorHandler(response);
         } else {
-          getUserData(email);
+          response.json().then((data) => {
+            getUserData(data.localId);
+          });
           dispatch(uiActions.setIsLogged(true));
-          dispatch(uiActions.setError(""));
           dispatch(uiActions.setModalContent("menu"));
         }
       })
@@ -81,9 +82,7 @@ const useAuthentication = () => {
           });
         }
       })
-      .then(
-        dispatch(uiActions.setModalContent("details"))
-      )
+      .then(dispatch(uiActions.setModalContent("details")))
       .catch((e) => console.log(e));
     //ERROR HANDLER
   };
