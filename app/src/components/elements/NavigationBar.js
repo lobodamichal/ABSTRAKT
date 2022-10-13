@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const NavigationBar = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const isLogged = useSelector((state) => state.ui.isLogged);
   const display = {
     display: "inline-block",

@@ -1,13 +1,19 @@
 import { useSelector } from "react-redux";
+import useDetails from "../../hooks/use-details";
 import GalleryCart from "../ui/galleries/GalleryCart";
 
 const CartContainer = () => {
+  const { placeOrder } = useDetails();
   const cart = useSelector((state) => state.cart);
   const empty = cart.length === 0;
   const total = cart.reduce(
     (prevVal, nextVal) => prevVal + nextVal.variant.price * nextVal.quantity,
     0
   );
+
+  const checkoutHandler = () => {
+    placeOrder()
+  };
 
   return (
     <section>
@@ -21,7 +27,7 @@ const CartContainer = () => {
       </p>
       <GalleryCart data={cart} />
       {!empty && <p>total: {total}</p>}
-      <button>check out</button>
+      <button onClick={checkoutHandler}>check out</button>
       <button>continue shopping</button>
     </section>
   );

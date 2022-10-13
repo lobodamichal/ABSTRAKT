@@ -13,6 +13,9 @@ const userSlice = createSlice({
     setLovedProducts(state, action) {
       state.userData.lovedProducts = action.payload
     },
+    setOrders(state, action) {
+      state.userData.orders = action.payload
+    }
   },
 });
 

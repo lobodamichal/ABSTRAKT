@@ -35,6 +35,7 @@ const useFetchUser = () => {
         country: ""
       },
       localId: responseData.localId,
+      orders: null
     };
 
     await fetch(

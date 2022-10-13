@@ -1,9 +1,11 @@
 import useDetails from "../../../hooks/use-details";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { uiActions } from "../../../store/ui-slice";
 import { useState } from "react";
 
 const ButtonImage = (props) => {
   const { updateLovedProducts } = useDetails();
+  const dispatch = useDispatch();
   const lovedProducts = useSelector(
     (state) => state.user.userData.lovedProducts
   );
@@ -22,15 +24,15 @@ const ButtonImage = (props) => {
 
   const onClickHandler = (event) => {
     event.preventDefault();
-    updateLovedProducts(email, props.id);
-    setLoved(!loved);
+    if (isLogged) {
+      updateLovedProducts(props.id);
+      setLoved(!loved);
+    } else {
+      dispatch(uiActions.setShowModal());
+    }
   };
 
-  return (
-    <button disabled={!isLogged} onClick={onClickHandler}>
-      {loved ? "loved" : "love"}
-    </button>
-  );
+  return <button onClick={onClickHandler}>{loved ? "loved" : "love"}</button>;
 };
 
 export default ButtonImage;
