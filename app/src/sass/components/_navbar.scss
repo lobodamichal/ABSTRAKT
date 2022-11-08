@@ -1,0 +1,58 @@
+.navbar {
+  // position: fixed;
+  height: 5.5rem;
+  width: 100vw;
+  padding: 0 2.8rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+
+  &__logo {
+    height: 3.1rem;
+    padding: 3px;
+    background-color: white;
+    border-radius: 0;
+    border: 3px solid $color-txt;
+    line-height: 0;
+  }
+
+  &__menu {
+    float: right;
+    width: 100vw;
+
+    &--mobile {
+      top: 5.5rem;
+      background-color: $color-gray;
+    }
+
+    &--desktop {
+      display: none;
+    }
+
+    &__link {
+    }
+
+    &__slash {
+    }
+  }
+
+  &__button {
+    width: 2.6rem;
+    height: 2.6rem;
+    border: none;
+    background-size: cover;
+    background-color: transparent;
+    margin-left: 2.6rem;
+
+    &--user {
+      background-image: url("../../assets/icons/icon-user.png");
+      
+    }
+
+    &--cart {
+      background-image: url("../../assets/icons/icon-bag.png");
+    }
+  }
+}

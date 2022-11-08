@@ -1,10 +1,10 @@
 import { uiActions } from "../store/ui-slice";
 import { useDispatch } from "react-redux";
-import useFetchUser from "./use-fetch-user";
+import useUser from "./use-user";
 
 const useAuthentication = () => {
   const dispatch = useDispatch();
-  const { getUserData, setUserData } = useFetchUser();
+  const { getUserData, setUserData } = useUser();
 
   const signUpEndpoint =
     "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=";
@@ -57,7 +57,6 @@ const useAuthentication = () => {
         }
       })
       .catch((e) => console.log(e));
-    //ERROR HANDLER
   };
 
   const signUp = async (email, password) => {
@@ -84,7 +83,6 @@ const useAuthentication = () => {
       })
       .then(dispatch(uiActions.setModalContent("details")))
       .catch((e) => console.log(e));
-    //ERROR HANDLER
   };
 
   return { signUp, logIn };

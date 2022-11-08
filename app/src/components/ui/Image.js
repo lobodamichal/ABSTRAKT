@@ -15,8 +15,9 @@ const Image = (props) => {
 
   useEffect(() => {
     const fetchImage = async () => {
+      setIsLoading(true);
       try {
-        setIsLoading(true);
+        
         const response = await getDownloadURL(imageRef);
 
         setImageURL(response);

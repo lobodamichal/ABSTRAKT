@@ -1,15 +1,15 @@
-import { useSelector } from "react-redux";
 import GalleryScroll from "../ui/galleries/GalleryScroll";
 import OptionSort from "../elements/OptionSort";
+import { useSelector } from "react-redux";
 
 const AllProductsContainer = () => {
-  const products = useSelector((state) => state.allProducts.products);
+  const productsData = useSelector((state) => state.allProducts.products);
 
   return (
     <section>
-      <h1>All Products</h1>
-      <OptionSort data={products}/>
-      <GalleryScroll data={products} />
+      <h1>All products</h1>
+      <OptionSort />
+      <GalleryScroll data={productsData} />
     </section>
   );
 };

@@ -1,21 +1,22 @@
-import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { cartActions } from "../../store/cart-slice";
-import findProduct from "../../helpers/findProduct";
-import firstVariant from "../../helpers/firstVariant";
 import ButtonLove from "../ui/buttons/ButtonLove";
 import ButtonMain from "../ui/buttons/ButtonMain";
 import OptionQuantity from "../elements/OptionQuantity";
 import OptionSize from "../elements/OptionSize";
 import Image from "../ui/Image";
+import useProducts from "../../hooks/use-products";
+import { uiActions } from "../../store/ui-slice";
 
-const ProductContainer = () => {
-  const params = useParams();
+const ProductContainer = (props) => {
+  const { firstVariant } = useProducts();
+
   const dispatch = useDispatch();
+  const isLogged = useSelector((state) => state.ui.isLogged);
+  const isLoading = useSelector((state) => state.ui.isLoading);
 
-  const products = useSelector((state) => state.allProducts.products);
-  const pageProduct = findProduct(products, "id", params.id);
+  const pageProduct = props.data;
   const variants = pageProduct.variants;
 
   const [variant, setVariant] = useState(firstVariant(variants, "price"));
@@ -26,31 +27,35 @@ const ProductContainer = () => {
   };
 
   const addToCartAction = () => {
-    const addProduct = {
-      name: pageProduct.name,
-      id: pageProduct.id,
-      variant,
-      quantity,
-    };
-    dispatch(cartActions.addToCart(addProduct));
+    if (isLogged) {
+      const addProduct = {
+        name: pageProduct.name,
+        id: pageProduct.id,
+        variant,
+        quantity,
+      };
+      dispatch(cartActions.addToCart(addProduct));
+    } else dispatch(uiActions.setShowModal());
   };
 
   return (
-    <section>
-      <Image id={pageProduct.id} type='main' />
-      <h1>{pageProduct.name}</h1>
-      <ButtonLove id={pageProduct.id}>like</ButtonLove>
-      <p>by {pageProduct.author}</p>
-      <p>{variant.price}</p>
-      <OptionSize data={variants} value={variant} setValue={setVariant} />
-      <OptionQuantity
-        changeQuantity={getQuantity}
-        initValue={1}
-        type={"product"}
-      />
-      <ButtonMain onClickHandler={addToCartAction}>add to cart</ButtonMain>
-      <p>{pageProduct.description}</p>
-    </section>
+    !isLoading && (
+      <section>
+        <Image id={pageProduct.id} type="main" />
+        <h1>{pageProduct.name}</h1>
+        <ButtonLove id={pageProduct.id}>like</ButtonLove>
+        <p>by {pageProduct.author}</p>
+        <p>{variant.price}</p>
+        <OptionSize data={variants} value={variant} setValue={setVariant} />
+        <OptionQuantity
+          changeQuantity={getQuantity}
+          initValue={1}
+          type={"product"}
+        />
+        <ButtonMain onClickHandler={addToCartAction}>add to cart</ButtonMain>
+        <p>{pageProduct.description}</p>
+      </section>
+    )
   );
 };
 

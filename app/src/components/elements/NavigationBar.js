@@ -8,9 +8,6 @@ const NavigationBar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isLogged = useSelector((state) => state.ui.isLogged);
-  const display = {
-    display: "inline-block",
-  };
 
   const userOnClickHandler = () => {
     dispatch(uiActions.setShowModal());
@@ -27,37 +24,59 @@ const NavigationBar = () => {
     !isLogged ? dispatch(uiActions.setShowModal()) : navigate("/cart");
   };
 
-  return (
-    <div>
-      <button style={display}>Abstrakt</button>
-      <div style={display}>
-        <Link to={"/home"} key={1}>
-          home/
-        </Link>
-
-        <Link to={"/all-products"} key={2}>
-          products/
-        </Link>
-
-        <Link to={"/collections"} key={3}>
-          collections/
-        </Link>
-
-        <Link onClick={cartLinkClickHandler} to={"/cart"} key={4}>
-          cart/
-        </Link>
-
-        <Link to={"/about"} key={5}>
-          about
-        </Link>
-      </div>
-      <button style={display} onClick={userOnClickHandler}>
-        user
-      </button>
-      <button style={display} onClick={cartIconClickHandler}>
+  const navbarMenu = (
+    <>
+      <Link to={"/home"} key={1} className="navbar__menu__link">
+        home
+      </Link>
+      <p className="navbar__menu__slash">/</p>
+      <Link to={"/all-products"} key={2} className="navbar__menu__link">
+        products
+      </Link>
+      <p className="navbar__menu__slash">/</p>
+      <Link to={"/collections"} key={3} className="navbar__menu__link">
+        collections
+      </Link>
+      <p className="navbar__menu__slash">/</p>
+      <Link
+        onClick={cartLinkClickHandler}
+        to={"/cart"}
+        key={4}
+        className="navbar__menu__link"
+      >
         cart
-      </button>
-    </div>
+      </Link>
+      <p className="navbar__menu__slash">/</p>
+      <Link to={"/about"} key={5} className="navbar__menu__link">
+        about
+      </Link>
+    </>
+  );
+
+  return (
+    <>
+      <div className="navbar">
+        <button className="navbar__logo txt-major txt-major--logo ">
+          Abstrakt
+        </button>
+        <div className="navbar__menu navbar__menu--desktop txt-major txt-major--menu">
+          {navbarMenu}
+        </div>
+        <div className="navbar__buttons">
+          <button
+            className="navbar__button navbar__button--user"
+            onClick={userOnClickHandler}
+          />
+          <button
+            className="navbar__button navbar__button--cart"
+            onClick={cartIconClickHandler}
+          />
+        </div>
+      </div>
+      <div className="navbar navbar__menu navbar__menu--mobile txt-major txt-major--menu">
+        {navbarMenu}
+      </div>
+    </>
   );
 };
 

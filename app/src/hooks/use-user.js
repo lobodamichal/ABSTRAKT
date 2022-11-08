@@ -1,8 +1,8 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { userActions } from "../store/user-slice";
 import { uiActions } from "../store/ui-slice";
 
-const useFetchUser = () => {
+const useUser = () => {
   const dispatch = useDispatch();
 
   const getUserData = async (localId) => {
@@ -64,4 +64,4 @@ const useFetchUser = () => {
   return { getUserData, setUserData };
 };
 
-export default useFetchUser;
+export default useUser;

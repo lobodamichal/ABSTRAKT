@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "../../../store/cart-slice";
 import { useSelector } from "react-redux";
 import { uiActions } from "../../../store/ui-slice";
-import firstVariant from "../../../helpers/firstVariant";
 import ButtonLove from "../buttons/ButtonLove";
 import Image from "../Image";
 
@@ -11,11 +10,7 @@ const GalleryScroll = (props) => {
   const dispatch = useDispatch();
   const isLogged = useSelector((state) => state.ui.isLogged);
 
-  const gallery = props.data.map((el) => {
-    const product = el;
-    const variant = firstVariant(el.variants, "price");
-    const price = variant.price;
-
+  const gallery = props.data.map((product) => {
     const addToCartAction = (event) => {
       event.preventDefault();
       isLogged
@@ -23,7 +18,7 @@ const GalleryScroll = (props) => {
             cartActions.addToCart({
               name: product.name,
               id: product.id,
-              variant,
+              variant: product.variant,
               quantity: 1,
             })
           )
@@ -37,7 +32,7 @@ const GalleryScroll = (props) => {
         <ButtonLove id={product.id}>like</ButtonLove>
         <button onClick={addToCartAction}>to cart</button>
         <p>by {product.author}</p>
-        <p>${price}</p>
+        <p>${product.variant.price}</p>
       </Link>
     );
   });
