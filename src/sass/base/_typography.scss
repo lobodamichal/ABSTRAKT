@@ -1,0 +1,80 @@
+.txt {
+  color: $color-txt;
+
+  &-major {
+    font-family: "JetBrains Mono", monospace;
+    letter-spacing: 0;
+
+    &--hero {
+      font-size: 3.6rem;
+      font-weight: $bold;
+    }
+
+    &--logo {
+      font-size: 2.4rem;
+      font-weight: $extra-bold;
+      letter-spacing: xd-letter-spacing(100);
+      text-transform: uppercase;
+    }
+
+    &--menu {
+      font-size: 1.9rem;
+      font-weight: $medium;
+      text-transform: uppercase;
+    }
+  }
+
+  &-header {
+    font-family: "IBM Plex Serif", serif;
+    letter-spacing: 0;
+    font-weight: $medium;
+
+    &--big {
+      font-size: 2.8rem;
+    }
+
+    &--normal {
+      font-size: 2.2rem;
+    }
+
+    &--small {
+      font-size: 1.8rem;
+      font-weight: $semi-bold;
+    }
+  }
+
+  &-description {
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: $normal;
+    letter-spacing: 0;
+
+    &--big {
+      font-size: 2rem;
+    }
+
+    &--normal {
+      font-size: 1.8rem;
+    }
+
+    &--small {
+      font-size: 1.6rem;
+    }
+
+    &--tiny {
+      font-size: 1.4rem;
+    }
+
+    &--warning {
+      font-size: 1.2rem;
+      color: $color-red;
+    }
+  }
+
+  &--price {
+    letter-spacing: xd-letter-spacing(150);
+  }
+
+  &--option {
+    letter-spacing: xd-letter-spacing(100);
+  }
+}

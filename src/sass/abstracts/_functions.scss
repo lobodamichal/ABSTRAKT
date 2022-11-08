@@ -1,0 +1,3 @@
+@function xd-letter-spacing($spacing) {
+    @return calc(1rem * 0.001 * $spacing)
+}
