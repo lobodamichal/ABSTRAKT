@@ -20,5 +20,6 @@ $ npm install react react-dom --save
 $ npm install @reduxjs/toolkit
 $ npm install --save react-router-dom
 $ npm install node-sass
+$ npm install react-hide-on-scroll
 $ npm start
 ```
