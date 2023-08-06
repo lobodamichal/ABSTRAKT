@@ -1,0 +1,124 @@
+.button {
+  display: inline-block;
+  cursor: pointer;
+
+  &--icon {
+    @include icon--grey--main;
+    width: 2.6rem;
+    height: 2.6rem;
+    border: none;
+    background-size: cover;
+    background-color: transparent;
+
+    margin: 1.6rem;
+
+    &--user {
+      background-image: url("../../assets/icons/user.svg");
+    }
+
+    &--bag {
+      background-image: url("../../assets/icons/bag.svg");
+      margin-left: 0;
+
+      &--image {
+        @include icon--white;
+        margin: 1.6rem;
+      }
+    }
+
+    &--love {
+      @include icon--white;
+      background-image: url("../../assets/icons/love.svg");
+
+      &--grey {
+        @include icon--grey--main;
+      }
+    }
+  }
+
+  &--option {
+    height: 3.6rem;
+
+    text-align: center;
+    border: none;
+    background-color: $color-gray;
+
+    padding: 0.7rem 1.4rem;
+
+    &__par {
+      margin: 0 0 0.8rem 0;
+
+      &--sort {
+        margin: 0.8rem 0.8rem 0 0;
+      }
+    }
+
+    &--container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--sort {
+      width: 3.6rem;
+      margin-bottom: 2.6rem;
+
+      display: inline-block;
+
+      &__value {
+        width: 13rem;
+      }
+
+      &__arrow {
+        width: 1.8rem;
+        background-image: url("../../assets/icons/arrow.svg");
+        background-size: cover;
+        color: transparent;
+
+        position: relative;
+        right: 0.6rem;
+        top: 0.2rem;
+
+        &--d {
+          transform: rotateX(180deg);
+          top: 0;
+        }
+      }
+    }
+
+    &--size {
+    }
+
+    &--quantity {
+      display: flex;
+      flex-direction: row;
+
+      &__amount {
+        width: 100%;
+      }
+
+      &__plus {
+        width: 5rem;
+        height: 3.6rem;
+      }
+    }
+  }
+
+  &--main {
+    width: 100%;
+    height: 4.5rem;
+    background-color: $color-white;
+    border: $border--main;
+    box-shadow: $shadow--main;
+    text-transform: Uppercase;
+    font-weight: $semi-bold;
+  }
+
+  &--underline {
+    align-self: flex-end;
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+  }
+}

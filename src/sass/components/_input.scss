@@ -1,0 +1,29 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &__name {
+    position: relative;
+    top: 2.7rem;
+    z-index: 299;
+    font-weight: $bold;
+
+    &--up {
+      top: 0.2rem;
+    }
+  }
+
+  &__field {
+    border: none;
+    height: 3.6rem;
+    background-color: transparent;
+    border-bottom: $border--main;
+    z-index: 300;
+  }
+
+  &__warning {
+    position: absolute;
+    top: 6.1rem;
+  }
+}
