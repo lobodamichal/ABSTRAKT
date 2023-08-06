@@ -5,9 +5,10 @@ import useDetails from "../../hooks/use-details";
 import { userActions } from "../../store/user-slice";
 import Input from "../elements/Input";
 import ButtonReturn from "../ui/buttons/ButtonReturn";
+import ButtonMain from "../ui/buttons/ButtonMain";
 
 const UserDetailsContainer = () => {
-  const buttonRef = useRef()
+  const buttonRef = useRef();
   const dispatch = useDispatch();
   const { updateAccountDetails } = useDetails();
   const { detailsFormValidation, detailValidation } = useValidation();
@@ -16,12 +17,15 @@ const UserDetailsContainer = () => {
   let formData = userData.accountDetails;
 
   const formValidation = () => {
-    buttonRef.current.disabled = !detailsFormValidation(Object.keys(formData), Object.values(formData))
+    buttonRef.current.disabled = !detailsFormValidation(
+      Object.keys(formData),
+      Object.values(formData)
+    );
   };
 
   useEffect(() => {
-    formValidation()
-  }, [])
+    formValidation();
+  }, []);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -35,9 +39,9 @@ const UserDetailsContainer = () => {
   };
 
   return (
-    <>
-      <h2>Account details</h2>
-      <form onSubmit={submitHandler}>
+    <div className="modal__content">
+      <h2 className="txt txt--header txt--header--big">Account details</h2>
+      <form className="modal__content__form" onSubmit={submitHandler}>
         <Input
           name="Name"
           type="text"
@@ -86,10 +90,12 @@ const UserDetailsContainer = () => {
           formValidation={formValidation}
           initialValue={formData.country}
         />
-        <button ref={buttonRef}>update details</button>
+        <button className="button button--main txt txt--description txt--description--normal modal__content__form__submit" ref={buttonRef}>
+          update details
+        </button>
       </form>
       <ButtonReturn path="menu" />
-    </>
+    </div>
   );
 };
 

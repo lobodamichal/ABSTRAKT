@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { uiActions } from "../../store/ui-slice";
 import ButtonReturn from "../ui/buttons/ButtonReturn";
+import ButtonMain from "../ui/buttons/ButtonMain";
 
 const UserMenuContainer = () => {
   const dispatch = useDispatch();
@@ -18,18 +19,18 @@ const UserMenuContainer = () => {
   };
 
   const logoutHandler = () => {
-    dispatch(uiActions.setIsLogged(false))
-  }
+    dispatch(uiActions.setIsLogged(false));
+  };
 
   return (
-    <>
-      <h1>Welcome!</h1>
-      <button onClick={lovedHandler}>loved products</button>
-      <button onClick={ordersHandler}>your orders</button>
-      <button onClick={detailsHandler}>account details</button>
+    <div className="modal__content">
+      <h1 className="txt txt--header txt--header--big">Welcome!</h1>
+      <ButtonMain onClickHandler={lovedHandler}>loved products</ButtonMain>
+      <ButtonMain onClickHandler={ordersHandler}>your orders</ButtonMain>
+      <ButtonMain onClickHandler={detailsHandler}>account details</ButtonMain>
+      <ButtonMain onClickHandler={logoutHandler}>logout</ButtonMain>
       <ButtonReturn path={false} />
-      <button onClick={logoutHandler}>logout</button>
-    </>
+    </div>
   );
 };
 

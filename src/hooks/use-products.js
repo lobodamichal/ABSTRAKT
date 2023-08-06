@@ -54,7 +54,7 @@ const useProducts = () => {
       case "name":
         output = sorting("name", order);
         break;
-      case "date released":
+      case "release":
         output = sorting("since", order);
         break;
     }

@@ -7,9 +7,15 @@
 }
 
 html {
-  font-size: 62.5%; //1rem = 10px
+  font-size: 47.5%; //1rem = 7px
+  //font-size: 62.5%; //1rem = 10px
 }
 
 body {
   box-sizing: border-box;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
 }

@@ -5,6 +5,7 @@ $color-ecru: #dedcd9;
 $color-gray: #d2d2d2;
 $color-darkgrey: #cccccc;
 $color-txt: #111111;
+$color-white: #fff;
 
 //font weights
 $normal: 400;
@@ -12,3 +13,12 @@ $medium: 500;
 $semi-bold: 600;
 $bold: 700;
 $extra-bold: 800;
+
+//media queries
+$tablet: 600px;
+$laptop: 900px;
+$desktop: 1400px;
+
+//border & shadow
+$border--main: 0.3rem solid $color-txt;
+$shadow--main: 0.3rem 0.3rem 0 0 $color-txt;

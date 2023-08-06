@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Input = (props) => {
   const [enteredValue, setEnteredValue] = useState(props.initialValue);
@@ -10,17 +10,23 @@ const Input = (props) => {
 
   const onChangeHandler = (event) => {
     setEnteredValue(event.target.value);
-    props.getValue(event.target);
+    props.getValue(event.target.value);
   };
 
   const onBlurHandler = () => {
     setIsClicked(true);
-    props.formValidation()
+    props.formValidation();
   };
 
   return (
-    <div>
-      <label htmlFor={props.name}>{props.name}</label>
+    <div className="input">
+      <span
+        className={`input__name txt txt--description txt--description--small ${
+          enteredValue ? "input__name--up" : ""
+        }`}
+      >
+        {props.name}
+      </span>
       <input
         value={enteredValue}
         id={props.name}
@@ -28,8 +34,13 @@ const Input = (props) => {
         required
         onChange={onChangeHandler}
         onBlur={onBlurHandler}
+        className="input__field txt txt--description txt--description--normal"
       />
-      {showError && <p>{message}</p>}
+      {showError && (
+        <span className="input__warning txt txt--description txt--description--warning">
+          {message}
+        </span>
+      )}
     </div>
   );
 };

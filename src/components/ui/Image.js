@@ -34,7 +34,7 @@ const Image = (props) => {
     <>
       {isLoading && <div>loading...</div>}
       {error && <Error>{error}</Error>}
-      {!isLoading && !error && <img src={imageURL} alt={`${props.id}`} />}
+      {!isLoading && !error && <img src={imageURL} alt={`${props.id}`}  className={`image ${props.className}`} />}
     </>
   );
 };

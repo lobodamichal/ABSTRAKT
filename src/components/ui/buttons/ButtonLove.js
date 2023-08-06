@@ -12,6 +12,8 @@ const ButtonImage = (props) => {
   const email = useSelector((state) => state.user.userData.email);
   const isLogged = useSelector((state) => state.ui.isLogged);
 
+  const styles = `button button--icon button--icon--love ${props.className}`
+
   const setInitialLoved = () => {
     if (lovedProducts) {
       return lovedProducts.includes(props.id);
@@ -32,7 +34,8 @@ const ButtonImage = (props) => {
     }
   };
 
-  return <button onClick={onClickHandler}>{loved ? "loved" : "love"}</button>;
+  return <button onClick={onClickHandler} className={styles}/>;
+  //love/loved to className
 };
 
 export default ButtonImage;

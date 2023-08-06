@@ -40,20 +40,42 @@ const ProductContainer = (props) => {
 
   return (
     !isLoading && (
-      <section>
-        <Image id={pageProduct.id} type="main" />
-        <h1>{pageProduct.name}</h1>
-        <ButtonLove id={pageProduct.id}>like</ButtonLove>
-        <p>by {pageProduct.author}</p>
-        <p>{variant.price}</p>
-        <OptionSize data={variants} value={variant} setValue={setVariant} />
-        <OptionQuantity
-          changeQuantity={getQuantity}
-          initValue={1}
-          type={"product"}
-        />
-        <ButtonMain onClickHandler={addToCartAction}>add to cart</ButtonMain>
-        <p>{pageProduct.description}</p>
+      <section className="section layout--product">
+        <Image id={pageProduct.id} type="main" className="layout--product__image" />
+
+        <div className="layout--product__info">
+          <div className="section__header">
+            <h1 className="txt txt--header txt--header--huge">
+              {pageProduct.name}
+            </h1>
+            <ButtonLove className="button__icon--love--grey" id={pageProduct.id}>
+              like
+            </ButtonLove>
+          </div>
+
+          <div className="layout--product__info__details">
+            <p className="txt txt--description txt--description--normal">
+              by {pageProduct.author}
+            </p>
+            <p className="txt txt--description txt--description--normal txt--price">
+              ${variant.price}
+            </p>
+          </div>
+
+          <div className="layout--product__info__options">
+            <OptionSize data={variants} value={variant} setValue={setVariant} />
+            <OptionQuantity
+              changeQuantity={getQuantity}
+              initValue={1}
+              type={"product"}
+            />
+            <ButtonMain onClickHandler={addToCartAction}>add to shopping bag</ButtonMain>
+          </div>
+
+          <p className="txt txt--description txt--description--normal layout--product__info__description">
+            {pageProduct.description}
+          </p>
+        </div>
       </section>
     )
   );

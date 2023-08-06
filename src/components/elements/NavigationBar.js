@@ -3,6 +3,7 @@ import { uiActions } from "../../store/ui-slice";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { HideScroll } from "react-hide-on-scroll";
 
 const NavigationBar = () => {
   const dispatch = useDispatch();
@@ -56,26 +57,28 @@ const NavigationBar = () => {
   return (
     <>
       <div className="navbar">
-        <button className="navbar__logo txt-major txt-major--logo ">
+        <button className="navbar__logo txt txt--major txt--major--logo ">
           Abstrakt
         </button>
-        <div className="navbar__menu navbar__menu--desktop txt-major txt-major--menu">
+        <div className="navbar__menu navbar__menu--desktop txt txt--major txt--major--menu">
           {navbarMenu}
         </div>
         <div className="navbar__buttons">
           <button
-            className="navbar__button navbar__button--user"
+            className="button--icon button--icon--user"
             onClick={userOnClickHandler}
           />
           <button
-            className="navbar__button navbar__button--cart"
+            className="button--icon button--icon--bag"
             onClick={cartIconClickHandler}
           />
         </div>
       </div>
-      <div className="navbar navbar__menu navbar__menu--mobile txt-major txt-major--menu">
-        {navbarMenu}
-      </div>
+      <HideScroll variant="down">
+        <div className="navbar navbar__menu navbar__menu--mobile txt txt--major txt--major--menu">
+          {navbarMenu}
+        </div>
+      </HideScroll>
     </>
   );
 };

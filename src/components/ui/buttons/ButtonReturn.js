@@ -8,7 +8,7 @@ const ButtonReturn = (props) => {
     else dispatch(uiActions.setShowModal());
   };
 
-  return <button onClick={returnHandler}>return</button>;
+  return <button className="button--underline txt txt--description txt--description--small" onClick={returnHandler}>return</button>;
 };
 
 export default ButtonReturn;

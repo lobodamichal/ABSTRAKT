@@ -1,0 +1,22 @@
+@mixin center-horizontaly {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin icon--grey--main {
+  filter: invert(98%) sepia(0%) saturate(267%) hue-rotate(143deg)
+    brightness(84%) contrast(91%);
+}
+
+@mixin icon--white {
+  filter: invert(99%) sepia(1%) saturate(0%) hue-rotate(150deg) brightness(105%)
+    contrast(100%);
+}

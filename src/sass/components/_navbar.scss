@@ -1,58 +1,107 @@
 .navbar {
-  // position: fixed;
+  @include center-horizontaly;
   height: 5.5rem;
-  width: 100vw;
-  padding: 0 2.8rem;
+  width: 90%;
+  max-width: 160rem;
+  background-color: $color-white;
+
   display: flex;
   flex-direction: row;
+  justify-content: end;
   align-items: center;
-  justify-content: space-between;
-  background-color: white;
+
+  position: fixed;
+  z-index: 100;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   &__logo {
     height: 3.1rem;
-    padding: 3px;
-    background-color: white;
     border-radius: 0;
-    border: 3px solid $color-txt;
+    border: 0.3rem solid $color-txt;
     line-height: 0;
+    background-color: $color-white;
+
+    padding: 0.3rem;
+    margin-right: auto;
   }
 
   &__menu {
-    float: right;
     width: 100vw;
+    height: 5.5rem;
+    border: 0.3px $color-white;
+    background-color: $color-gray;
 
-    &--mobile {
-      top: 5.5rem;
-      background-color: $color-gray;
-    }
+    padding: 0 5%;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: start;
+
+    top: 5.5rem;
+    overflow-x: scroll;
 
     &--desktop {
+      height: 2rem;
+      width: auto;
+      background-color: $color-white;
+      color: $color-txt;
+
+      margin: auto 2.6rem auto auto;
+
       display: none;
+      top: 0;
+      overflow-x: initial;
     }
 
-    &__link {
+    &__link,
+    &__link:visited {
+      margin-right: 1rem;
+
+      position: relative;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
 
     &__slash {
+      color: $color-white;
+
+      margin-right: 1rem;
+
+      position: relative;
+      transform: rotateZ(20deg);
     }
   }
+}
 
-  &__button {
-    width: 2.6rem;
-    height: 2.6rem;
-    border: none;
-    background-size: cover;
-    background-color: transparent;
-    margin-left: 2.6rem;
+@media (min-width: $laptop) {
+  .navbar {
+    justify-content: end;
 
-    &--user {
-      background-image: url("../../assets/icons/icon-user.png");
-      
+    &__menu {
+      display: none;
+      padding-top: 0;
+      padding-left: 0;
+
+      &--desktop {
+        display: flex;
+        padding-right: 0;
+      }
+
+      &__slash {
+        color: $color-txt;
+      }
     }
+  }
+}
 
-    &--cart {
-      background-image: url("../../assets/icons/icon-bag.png");
-    }
+@media (min-width: $desktop) {
+  .navbar {
+    width: 80%;
   }
 }
