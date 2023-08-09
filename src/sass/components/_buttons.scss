@@ -111,6 +111,7 @@
     box-shadow: $shadow--main;
     text-transform: Uppercase;
     font-weight: $semi-bold;
+    flex: 0 0 auto;
   }
 
   &--underline {

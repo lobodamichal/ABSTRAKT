@@ -48,7 +48,7 @@ const ProductContainer = (props) => {
             <h1 className="txt txt--header txt--header--huge">
               {pageProduct.name}
             </h1>
-            <ButtonLove className="button__icon--love--grey" id={pageProduct.id}>
+            <ButtonLove className="button__icon button__icon--love button__icon--love--grey" id={pageProduct.id}>
               like
             </ButtonLove>
           </div>

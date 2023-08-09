@@ -1,7 +1,7 @@
 # ABSTRAKT
 
 ## General info
-This project is simple mobile-first web shop build with React. I'm still working on styling so don't be suprised to experience some '90 HTML vibe ;)
+<!-- This project is simple mobile-first web shop build with React. I'm still working on styling so don't be suprised to experience some '90 HTML vibe ;) -->
 	
 ## Technologies
 Project is created with:
@@ -16,10 +16,4 @@ To run this project, install it locally using npm:
 
 ```
 $ npm install
-$ npm install react react-dom --save
-$ npm install @reduxjs/toolkit
-$ npm install --save react-router-dom
-$ npm install node-sass
-$ npm install react-hide-on-scroll
-$ npm start
 ```

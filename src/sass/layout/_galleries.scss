@@ -1,9 +1,8 @@
 .gallery {
-  display: grid;
-  justify-content: center;
-  grid-gap: 2.8rem;
-
-  &--scroll {
+  &--products {
+    display: grid;
+    justify-content: center;
+    grid-gap: 2.8rem;
     grid-template-columns: 1fr;
 
     @media (min-width: 320px) {
@@ -15,19 +14,35 @@
     @media (min-width: 1000px) {
       grid-template-columns: repeat(4, 1fr);
     }
+
+    &__item {
+      position: relative;
+
+      &__buttons {
+        position: absolute;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        z-index: 1000;
+        transform: translateY(-6rem);
+      }
+    }
   }
 
-  &__item {
-    position: relative;
+  &--cart {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+    overflow: scroll;
 
-    &__buttons {
-      position: absolute;
-      width: 100%;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      z-index: 1000;
-      transform: translateY(-6rem);
+    &__item {
+      &__image {
+
+      }
+      &__name {
+
+      }
     }
   }
 }

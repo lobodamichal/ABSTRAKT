@@ -27,9 +27,9 @@ const GalleryScroll = (props) => {
 
     return (
       <Link to={`/product/${product.id}`} key={product.id}>
-        <div className="gallery__item">
+        <div className="gallery--products__item">
           <Image id={product.id} type="main" />
-          <div className="gallery__item__buttons">
+          <div className="gallery--products__item__buttons">
             <ButtonLove id={product.id} />
             <button
               onClick={addToCartAction}
@@ -37,13 +37,13 @@ const GalleryScroll = (props) => {
             />
           </div>
 
-          <h2 className="txt txt--header txt--header--normal gallery__item__descr">
+          <h2 className="txt txt--header txt--header--normal">
             {product.name}
           </h2>
-          <p className="txt txt--description txt--description--small gallery__item__descr">
+          <p className="txt txt--description txt--description--small">
             by {product.author}
           </p>
-          <p className="txt txt--price txt--description txt--description--small gallery__item__descr">
+          <p className="txt txt--price txt--description txt--description--small">
             ${product.variant.price}
           </p>
         </div>
@@ -51,7 +51,7 @@ const GalleryScroll = (props) => {
     );
   });
 
-  return <div className="gallery gallery--scroll">{gallery}</div>;
+  return <div className="gallery--products">{gallery}</div>;
 };
 
 export default GalleryScroll;

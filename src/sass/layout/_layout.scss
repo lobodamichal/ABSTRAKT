@@ -28,6 +28,12 @@
       &__description {}
     }
   }
+
+  &--cart {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 13rem);
+  }
 }
 
 @media (min-width: $tablet) {
