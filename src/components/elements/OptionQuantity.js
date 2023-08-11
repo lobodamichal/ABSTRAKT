@@ -43,11 +43,11 @@ const OptionQuantity = (props) => {
   };
 
   return (
-    <div className="button--option--container">
-      <p className="txt--description txt--description--small button--option__par">
+    <div className={`button--option--container ${props.classNameContainer}`}>
+      <p className={`txt--description txt--description--small button--option__par ${props.classNameName}`}>
         quantity:
       </p>
-      <div className="button--option--quantity">
+      <div className={`button--option--quantity  ${props.classNameButton}`}>
         <ButtonOption
           styles="button--option--quantity__plus"
           onClickHandler={onDecrease}

@@ -27,11 +27,13 @@
     }
 
     &--love {
-      @include icon--white;
       background-image: url("../../assets/icons/love.svg");
+      @include icon--white;
 
       &--grey {
         @include icon--grey--main;
+        width: 3.5rem;
+        height: 3.5rem;
       }
     }
   }
@@ -60,7 +62,6 @@
 
     &--sort {
       width: 3.6rem;
-      margin-bottom: 2.6rem;
 
       display: inline-block;
 
@@ -83,9 +84,6 @@
           top: 0;
         }
       }
-    }
-
-    &--size {
     }
 
     &--quantity {
@@ -121,5 +119,12 @@
     border: none;
     padding: 0;
     text-decoration: underline;
+  }
+
+  &--remove {
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 0;
   }
 }

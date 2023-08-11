@@ -41,14 +41,21 @@ const ProductContainer = (props) => {
   return (
     !isLoading && (
       <section className="section layout--product">
-        <Image id={pageProduct.id} type="main" className="layout--product__image" />
+        <Image
+          id={pageProduct.id}
+          type="main"
+          className="layout--product__image"
+        />
 
         <div className="layout--product__info">
           <div className="section__header">
             <h1 className="txt txt--header txt--header--huge">
               {pageProduct.name}
             </h1>
-            <ButtonLove className="button__icon button__icon--love button__icon--love--grey" id={pageProduct.id}>
+            <ButtonLove
+              className="button--icon--love--grey"
+              id={pageProduct.id}
+            >
               like
             </ButtonLove>
           </div>
@@ -69,7 +76,9 @@ const ProductContainer = (props) => {
               initValue={1}
               type={"product"}
             />
-            <ButtonMain onClickHandler={addToCartAction}>add to shopping bag</ButtonMain>
+            <ButtonMain onClickHandler={addToCartAction}>
+              add to shopping bag
+            </ButtonMain>
           </div>
 
           <p className="txt txt--description txt--description--normal layout--product__info__description">

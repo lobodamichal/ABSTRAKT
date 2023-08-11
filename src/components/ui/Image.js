@@ -31,11 +31,11 @@ const Image = (props) => {
   }, []);
 
   return (
-    <>
+    <div className={props.className}>
       {isLoading && <div>loading...</div>}
       {error && <Error>{error}</Error>}
-      {!isLoading && !error && <img src={imageURL} alt={`${props.id}`}  className={`image ${props.className}`} />}
-    </>
+      {!isLoading && !error && <img src={imageURL} alt={`${props.id}`}  className="image"/>}
+    </div>
   );
 };
 
