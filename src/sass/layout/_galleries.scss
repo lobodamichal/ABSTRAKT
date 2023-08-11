@@ -39,11 +39,23 @@
     overflow-y: scroll;
     overflow-x: visible;
 
+    @media (min-width: $tablet) {
+      flex-direction: row;
+      overflow-y: visible;
+      overflow-x: scroll;
+     }
+
     &__item {
       display: flex;
       flex-direction: row;
       width: 100%;
       gap: 2.6rem;
+
+      @media (min-width: $tablet) {
+        min-width: 55rem;
+        max-width: 55rem;
+        align-self: center;
+       }
 
       &__image {
         flex: 1;

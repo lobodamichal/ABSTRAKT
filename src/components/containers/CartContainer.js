@@ -29,7 +29,9 @@ const CartContainer = () => {
             : `${quantity} items in your cart.`
           : "There are no items in your cart."}
       </p>
-      <GalleryCart data={cart} />
+
+      {!empty ? <GalleryCart data={cart} /> : <></>}
+
       {!empty && (
         <span className="txt txt--description txt--description--normal">
           total:{" "}
@@ -38,8 +40,22 @@ const CartContainer = () => {
           </span>
         </span>
       )}
-      <ButtonMain onClickHandler={checkoutHandler}>check out</ButtonMain>
-      <ButtonMain>continue shopping</ButtonMain>
+
+      <div className="layout--cart__buttons">
+        {!empty ? (
+          <ButtonMain
+            className="layout--cart__buttons__button"
+            onClickHandler={checkoutHandler}
+          >
+            check out
+          </ButtonMain>
+        ) : (
+          <></>
+        )}
+        <ButtonMain className="layout--cart__buttons__button">
+          continue shopping
+        </ButtonMain>
+      </div>
     </section>
   );
 };
