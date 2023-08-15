@@ -10,7 +10,7 @@ const Input = (props) => {
 
   const onChangeHandler = (event) => {
     setEnteredValue(event.target.value);
-    props.getValue(event.target.value);
+    props.getValue(event.target.value, props.name);
   };
 
   const onBlurHandler = () => {
@@ -27,6 +27,7 @@ const Input = (props) => {
       >
         {props.name}
       </span>
+
       <input
         value={enteredValue}
         id={props.name}
@@ -36,6 +37,7 @@ const Input = (props) => {
         onBlur={onBlurHandler}
         className="input__field txt txt--description txt--description--normal"
       />
+
       {showError && (
         <span className="input__warning txt txt--description txt--description--warning">
           {message}

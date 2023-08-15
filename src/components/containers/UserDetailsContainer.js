@@ -5,7 +5,6 @@ import useDetails from "../../hooks/use-details";
 import { userActions } from "../../store/user-slice";
 import Input from "../elements/Input";
 import ButtonReturn from "../ui/buttons/ButtonReturn";
-import ButtonMain from "../ui/buttons/ButtonMain";
 
 const UserDetailsContainer = () => {
   const buttonRef = useRef();
@@ -33,9 +32,8 @@ const UserDetailsContainer = () => {
     dispatch(userActions.setAccountDetails(formData));
   };
 
-  const getInputValue = (e) => {
-    let { id: key, value } = e;
-    formData = { ...formData, [key.toLowerCase().replace(" ", "")]: value };
+  const getInputValue = (value, name) => {
+    formData = { ...formData, [name.toLowerCase().replace(" ", "")]: value };
   };
 
   return (
