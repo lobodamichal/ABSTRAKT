@@ -5,7 +5,7 @@ const UserOrdersContainer = () => {
   const orders = useSelector((state) => state.user.userData.orders);
   let id = 0;
 
-  const orderList = orders.map((order) => {
+  const orderList = orders ? orders.map((order) => {
     const total = order.products.reduce(
       (prevVal, nextVal) => prevVal + nextVal.variant.price * nextVal.quantity,
       0
@@ -31,7 +31,7 @@ const UserOrdersContainer = () => {
         <h3>${total}</h3>
       </div>
     );
-  });
+  }) : (<span>You have no past orders.</span>)
 
   return (
     <>

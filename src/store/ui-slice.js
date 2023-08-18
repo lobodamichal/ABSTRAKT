@@ -18,6 +18,7 @@ const uiSlice = createSlice({
     },
     setShowModal(state) {
       state.showModal = !state.showModal;
+      state.modalContent = "menu";
     },
     setModalContent(state, action) {
       state.modalContent = action.payload;

@@ -19,6 +19,7 @@ const useUser = () => {
         }
       })
       .catch((e) => console.log(e));
+      
     //ERROR HANDLER
   };
 
