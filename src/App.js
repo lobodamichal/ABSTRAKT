@@ -1,7 +1,8 @@
 import "./sass/main.scss";
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import About from "./components/pages/AboutPage";
 import Cart from "./components/pages/CartPage";
 import Collections from "./components/pages/CollectionsPage";
@@ -16,6 +17,7 @@ import Modal from "./components/containers/Modal";
 
 function App() {
   const { fetchProducts } = useProducts();
+  const isLogged = useSelector((state) => state.ui.isLogged);
 
   useEffect(() => {
     fetchProducts();
@@ -39,7 +41,10 @@ function App() {
           }
         />
         <Route path="/collections" element={<Collections />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/cart"
+          element={isLogged ? <Cart /> : <Navigate replace to="/home" />}
+        />
         <Route path="/about" element={<About />} />
       </Routes>
     </>
