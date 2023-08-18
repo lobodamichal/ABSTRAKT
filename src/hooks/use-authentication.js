@@ -52,6 +52,7 @@ const useAuthentication = () => {
           response.json().then((data) => {
             getUserData(data.localId);
           });
+          dispatch(uiActions.setError(""))
           dispatch(uiActions.setIsLogged(true));
           dispatch(uiActions.setModalContent("menu"));
         }
@@ -76,6 +77,7 @@ const useAuthentication = () => {
           errorHandler(response);
         } else {
           response.json().then((data) => {
+            dispatch(uiActions.setError(""))
             setUserData(data);
             logIn(email, password);
           });
